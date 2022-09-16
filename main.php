@@ -20,6 +20,20 @@ var_dump($report);
 */
 
 $milk = new FarmAnimalResource('молоко','л');
+$eggs = new FarmAnimalResource('яйцо','шт');
+$meat = new FarmAnimalResource('свинина','кг');
+$meat2 = new FarmAnimalResource('говядина','кг');
+$whool = new FarmAnimalResource('овечья шерсть','кг');
+
 $resourceCollector = new ResourceCollector();
 
-$resourceCollector->add($milk,1);
+$resourceCollector
+   ->add($milk,1)
+   ->add($eggs,20)
+   ->add($meat,100)
+   ->add($meat2,100)
+   ->add($whool,1);
+
+$report = json_decode($resourceCollector->getTotals());
+
+var_dump($report);

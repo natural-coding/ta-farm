@@ -10,7 +10,7 @@ class ResourceCollector implements ResourceCollectorInterface
     * Example (add it later)
     * 'молоко' => {new FarmAnimalResource('молоко', 'л')}
     */
-   private $resourceCollection = [];
+   private $resourceCollectionArray = [];
 
    /**
     * Add FarmAnimalResource to the class
@@ -20,6 +20,21 @@ class ResourceCollector implements ResourceCollectorInterface
    function add(FarmAnimalResourceInterface $p_farmAnimalResource, int $p_quantity)
       : ResourceCollectorInterface
    {
+      $key = $p_farmAnimalResource->getName();
+
+      if (array_key_exists($key, $this->resourceCollectionArray))
+      {
+         $this->resourceCollectionArray[$key]->quantity += $p_quantity;
+      }
+      else
+      {
+         $val = new stdClass();
+         $val->resource = $p_farmAnimalResource;
+         $val->quantity = $p_quantity;
+
+         $this->resourceCollectionArray[$key] = $val;
+      }
+
       return $this;
    }
 
@@ -29,21 +44,20 @@ class ResourceCollector implements ResourceCollectorInterface
     */
    function getTotals() : string
    {
-      $data = new stdClass();
+      $outputArray = [];
 
-      $data->resourceName = "молоко";
-      $data->units = "л";
-      $data->quantity = 1028;
+      foreach($this->resourceCollectionArray as $item)
+      {
+         $data = new \stdClass();
 
-      $data2 = clone $data;
+         $data->resourceName = $item->resource->getName();
+         $data->units = $item->resource->getUnits();
+         $data->quantity = $item->quantity;
 
-      $data2->resourceName = "яйцо";
-      $data2->units = "шт";
-      $data2->quantity = 15;
+         array_push($outputArray,$data);
+      }
 
-      return
-         json_encode(
-            [$data, $data2]
-         );
+      return json_encode($outputArray);
+
    }   
 }
