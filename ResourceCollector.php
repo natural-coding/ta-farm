@@ -1,24 +1,35 @@
 <?php
 
 /**
- * Collect all the resources from farm animals
+ * Collect all the resources it receives. Return totals.
  */
 class ResourceCollector implements ResourceCollectorInterface
 {
    /**
-    * Add FarmAnimalResource to the class
+    * Contains resource description and quantity
+    * Example (add it later)
+    * 'молоко' => {new FarmAnimalResource('молоко', 'л')}
     */
-   function add(FarmAnimalResource $p_farmAnimalResource) : ResourceColletorInterface
+   private $resourceCollection = [];
+
+   /**
+    * Add FarmAnimalResource to the class
+    * @param FarmAnimalResource $p_farmAnimalResource
+    * @return ResourceColletorInterface
+    */
+   function add(FarmAnimalResourceInterface $p_farmAnimalResource, int $p_quantity)
+      : ResourceCollectorInterface
    {
       return $this;
    }
 
    /**
     * Return JSON as string with totals
+    * @return string JSON as string with totals
     */
    function getTotals() : string
    {
-      $data = new \stdClass();
+      $data = new stdClass();
 
       $data->resourceName = "молоко";
       $data->units = "л";
