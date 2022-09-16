@@ -7,4 +7,10 @@ define('PATH_INTERFACES', PATH_ROOT . 'interfaces' . DIRECTORY_SEPARATOR);
 require_once PATH_INTERFACES . 'ResourceCollectorInterface.php';
 require_once PATH_ROOT . 'ResourceCollector.php';
 
-print "Hello! :-)";
+$resourceCollector = new ResourceCollector();
+
+$report = json_decode($resourceCollector->getTotals());
+
+var_dump($report);
+
+//print $resourceCollector->getTotals();
