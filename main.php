@@ -18,6 +18,7 @@ require_once PATH_ROOT . 'ResourceCollector.php';
 require_once PATH_ROOT . 'FarmAnimalResource.php';
 require_once PATH_ROOT . 'FarmAnimal.php';
 require_once PATH_ROOT . 'RandomNumberGenerator.php';
+require_once PATH_ROOT . 'FarmAnimalInventory.php';
 
 /*$resourceCollector = new ResourceCollector();
 
@@ -58,7 +59,7 @@ print $randGen->getRandomNumber();
 */
 
 // "09 Able to collect resource from farm animal"
-
+/*
 $eggResource = new FarmAnimalResource('яйцо','шт');
 $randGen = new RandomNumberGenerator(1,10);
 
@@ -71,3 +72,26 @@ $chicken1->giveResourceToOwner($tempResource,$quantity);
 
 var_dump($tempResource);
 var_dump($quantity);
+*/
+
+// (2) "08 RandomNumberGenerator works!"
+/*
+$uniqueId = 1
+$animalSpecies = 'курица';
+$eggResource = new FarmAnimalResource('яйцо','шт');
+$randGen = new RandomNumberGenerator(1,10);
+
+$chicken1 = new FarmAnimal($uniqueId,$animalSpecies,$eggResource,$randGen);
+
+$tempResource = new FarmAnimalResource();
+$quantity = null;
+
+$chicken1->giveResourceToOwner($tempResource,$quantity);
+
+var_dump($tempResource);
+var_dump($quantity);
+*/
+
+$farmAnimalInventory = new FarmAnimalInventory();
+
+print $farmAnimalInventory->getDataAsJson();
