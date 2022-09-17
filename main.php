@@ -13,12 +13,14 @@ require_once PATH_INTERFACES . 'FarmAnimalResourceInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalInventoryInterface.php';
 require_once PATH_INTERFACES . 'RandomNumberGeneratorInterface.php';
 require_once PATH_INTERFACES . 'GivingResourceInterface.php';
+require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
 
 require_once PATH_ROOT . 'ResourceCollector.php';
 require_once PATH_ROOT . 'FarmAnimalResource.php';
 require_once PATH_ROOT . 'FarmAnimal.php';
 require_once PATH_ROOT . 'RandomNumberGenerator.php';
 require_once PATH_ROOT . 'FarmAnimalInventory.php';
+require_once PATH_ROOT . 'NumberSequence.php';
 
 /*$resourceCollector = new ResourceCollector();
 
@@ -92,6 +94,55 @@ var_dump($tempResource);
 var_dump($quantity);
 */
 
+// "10 FarmAnimalInventory first step"
+/*
 $farmAnimalInventory = new FarmAnimalInventory();
 
 print $farmAnimalInventory->getDataAsJson();
+*/
+
+// temp
+/*
+$chicken1 = new FarmAnimal(
+   1,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken2 = new FarmAnimal(
+   2,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$cow1 = new FarmAnimal(
+   3,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+
+
+$farmAnimalInventory = new FarmAnimalInventory();
+
+print $farmAnimalInventory->getDataAsJson();
+*/
+
+// "13 Unique ID generation works!"
+/*
+print NumberSequence::generateUniqueIntegerId();
+print NumberSequence::generateUniqueIntegerId();
+print NumberSequence::generateUniqueIntegerId();
+print NumberSequence::generateUniqueIntegerId();
+*/
+
+// "14 Implement NumberSequence setFirstItem"
+NumberSequence::setFirstItem(100);
+
+print NumberSequence::generateUniqueIntegerId();
+print NumberSequence::generateUniqueIntegerId();
+print NumberSequence::generateUniqueIntegerId();
+print NumberSequence::generateUniqueIntegerId();

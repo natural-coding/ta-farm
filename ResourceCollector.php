@@ -6,16 +6,22 @@
 class ResourceCollector implements ResourceCollectorInterface
 {
    /**
-    * Contains resource description and quantity
-    * Example (add it later)
-    * 'молоко' => {new FarmAnimalResource('молоко', 'л')}
+    * It stores farm animals' resources
+    * An array key is a resource name
+    * A value is an object with two fields:
+    * - resource (represents the resource)
+    * - quantity
+    * Example:
+    *  $val = new stdClass();
+    *  $val->resource = $p_farmAnimalResource;
+    *  $val->quantity = $p_quantity;
     */
    private $resourceCollectionArray = [];
 
    /**
     * Add FarmAnimalResource to the class
     * @param FarmAnimalResource $p_farmAnimalResource
-    * @return ResourceColletorInterface
+    * @return ResourceCollectorInterface
     */
    function add(FarmAnimalResourceInterface $p_farmAnimalResource, int $p_quantity)
       : ResourceCollectorInterface
