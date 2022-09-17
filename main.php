@@ -12,6 +12,7 @@ require_once PATH_INTERFACES . 'ResourceCollectorInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalResourceInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalInventoryInterface.php';
 require_once PATH_INTERFACES . 'RandomNumberGeneratorInterface.php';
+require_once PATH_INTERFACES . 'GivingResourceInterface.php';
 
 require_once PATH_ROOT . 'ResourceCollector.php';
 require_once PATH_ROOT . 'FarmAnimalResource.php';
@@ -49,8 +50,24 @@ var_dump($report);*/
 
 ///////////////////////////////////////////////////////////////////////////
 
+// "08 RandomNumberGenerator works!"
+/*
 $randGen = new RandomNumberGenerator(1,10);
 
 print $randGen->getRandomNumber();
+*/
 
+// "09 Able to collect resource from farm animal"
 
+$eggResource = new FarmAnimalResource('яйцо','шт');
+$randGen = new RandomNumberGenerator(1,10);
+
+$chicken1 = new FarmAnimal(1,'курица',$eggResource,$randGen);
+
+$tempResource = new FarmAnimalResource();
+$quantity = 0;
+
+$chicken1->giveResourceToOwner($tempResource,$quantity);
+
+var_dump($tempResource);
+var_dump($quantity);

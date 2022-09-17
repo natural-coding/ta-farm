@@ -14,7 +14,7 @@ class FarmAnimalResource implements FarmAnimalResourceInterface
    public string $resourceName;
    public string $units;
 
-   function __construct(string $p_resourceName, string $p_units)
+   function __construct(string $p_resourceName = '', string $p_units = '')
    {
       $this->resourceName = $p_resourceName;
       $this->units = $p_units;

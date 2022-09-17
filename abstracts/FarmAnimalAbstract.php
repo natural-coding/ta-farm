@@ -17,7 +17,7 @@ abstract class FarmAnimalAbstract implements FarmAnimalInterface, HasIntegerIdIn
    }
 
    /**
-    * The following function implement FarmAnimalInterface
+    * The following functions implement FarmAnimalInterface
     */
    function getSpecies() : string
    {
