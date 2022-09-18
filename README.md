@@ -1,6 +1,6 @@
 ## ta-farm
 
-A test assignment completed 99% as it has a well defined architecture. :-) The source code follows the SOLID principles (but not PSR recommendations) 
+A test assignment completed 99% as it has a well defined architecture. :-) The source code follows the SOLID principles (but not PSR recommendations). 
 
 ### Requirements
 - PHP 7.4+ (type hints in class declaration)
