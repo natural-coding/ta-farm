@@ -3,7 +3,7 @@
 /**
  * Collect all the resources it receives. Return totals.
  */
-class ResourceCollector implements ResourceCollectorInterface
+class ResourceCollector implements ResourceDataStoreInterface, ResourceDataExportInterface
 {
    /**
     * It stores farm animals' resources
@@ -24,7 +24,7 @@ class ResourceCollector implements ResourceCollectorInterface
     * @return ResourceCollectorInterface
     */
    function add(FarmAnimalResourceInterface $p_farmAnimalResource, int $p_quantity)
-      : ResourceCollectorInterface
+      : ResourceDataStoreInterface
    {
       $key = $p_farmAnimalResource->getName();
 
@@ -45,10 +45,12 @@ class ResourceCollector implements ResourceCollectorInterface
    }
 
    /**
-    * Return JSON as string with totals
-    * @return string JSON as string with totals
+    * It returns array of stdClass instances
+    * You can encode this array using json_encode() further
+    * 
+    * @return array
     */
-   function getTotals() : string
+   function getResourceDataAsJsonArray() : array
    {
       $outputArray = [];
 
@@ -63,7 +65,6 @@ class ResourceCollector implements ResourceCollectorInterface
          array_push($outputArray,$data);
       }
 
-      return json_encode($outputArray);
-
+      return $outputArray;
    }   
 }

@@ -6,12 +6,15 @@ define('PATH_INTERFACES', PATH_ROOT . 'interfaces' . DIRECTORY_SEPARATOR);
 require_once PATH_INTERFACES . 'FarmAnimalInterface.php';
 require_once PATH_INTERFACES . 'HasIntegerIdInterface.php';
 
-require_once PATH_INTERFACES . 'ResourceCollectorInterface.php';
+require_once PATH_INTERFACES . 'ResourceDataStoreInterface.php';
+require_once PATH_INTERFACES . 'ResourceDataExportInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalResourceInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalInventoryInterface.php';
 require_once PATH_INTERFACES . 'RandomNumberGeneratorInterface.php';
 require_once PATH_INTERFACES . 'GivingResourceInterface.php';
 require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
+require_once PATH_INTERFACES . 'AnimalDataStoreInterface.php';
+require_once PATH_INTERFACES . 'AnimalDataExportInterface.php';
 
 require_once PATH_ROOT . 'ResourceCollector.php';
 require_once PATH_ROOT . 'FarmAnimalResource.php';
@@ -147,3 +150,24 @@ print NumberSequence::generateUniqueIntegerId();
 print NumberSequence::generateUniqueIntegerId();
 print NumberSequence::generateUniqueIntegerId();
 */
+
+///////////////////////////////////////////////////////////////////////////
+
+$milk = new FarmAnimalResource('молоко','л');
+$eggs = new FarmAnimalResource('яйцо','шт');
+$meat = new FarmAnimalResource('свинина','кг');
+$meat2 = new FarmAnimalResource('говядина','кг');
+$whool = new FarmAnimalResource('овечья шерсть','кг');
+
+$resourceCollector = new ResourceCollector();
+
+$resourceCollector
+   ->add($milk,1)
+   ->add($eggs,20)
+   ->add($meat,100)
+   ->add($meat2,100)
+   ->add($whool,1);
+
+$report = $resourceCollector->getResourceDataAsJsonArray();
+
+var_dump($report);
