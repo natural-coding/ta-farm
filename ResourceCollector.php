@@ -65,6 +65,11 @@ class ResourceCollector implements ResourceDataStoreInterface, ResourceDataExpor
          array_push($outputArray,$data);
       }
 
+      usort($outputArray, function($data1,$data2) {
+            return $data1->resourceName <=> $data2->resourceName;
+         }
+      );
+
       return $outputArray;
    }   
 }

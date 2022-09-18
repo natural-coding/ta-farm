@@ -218,6 +218,8 @@ $a[0] = 'xxx';
 print_r($farmAnimalTable->getAnimalDataAsArray());
 */
 
+// ("21 Print grouped data!")
+/*
 $chicken1 = new FarmAnimal(
    1,
    'курица',
@@ -239,11 +241,40 @@ $cow1 = new FarmAnimal(
    new RandomNumberGenerator(8,12)
 );
 
+$cow2 = new FarmAnimal(
+   4,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+
 $farmAnimalTable = new FarmAnimalTable();
 $farmAnimalTable->add($chicken1);
-$farmAnimalTable->add($chicken2);
+//$farmAnimalTable->add($chicken2);
 $farmAnimalTable->add($cow1);
+$farmAnimalTable->add($cow2);
 
 $a = $farmAnimalTable->getAnimalDataGroupedAsJsonArray();
 
 print_r($a);
+*/
+
+$milk = new FarmAnimalResource('молоко','л');
+$eggs = new FarmAnimalResource('яйцо','шт');
+$meat = new FarmAnimalResource('свинина','кг');
+$meat2 = new FarmAnimalResource('говядина','кг');
+$whool = new FarmAnimalResource('овечья шерсть','кг');
+
+$resourceCollector = new ResourceCollector();
+
+$resourceCollector
+   ->add($milk,1)
+   ->add($eggs,20)
+   ->add($meat,100)
+   ->add($meat2,100)
+   ->add($whool,1);
+
+$report = $resourceCollector->getResourceDataAsJsonArray();
+
+var_dump($report);
