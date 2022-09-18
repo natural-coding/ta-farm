@@ -21,7 +21,7 @@ require_once PATH_ROOT . 'FarmAnimalResource.php';
 require_once PATH_ROOT . 'FarmAnimalBase.php';
 require_once PATH_ROOT . 'FarmAnimal.php';
 require_once PATH_ROOT . 'RandomNumberGenerator.php';
-require_once PATH_ROOT . 'FarmAnimalInventory.php';
+require_once PATH_ROOT . 'FarmAnimalTable.php';
 require_once PATH_ROOT . 'NumberSequence.php';
 
 /*$resourceCollector = new ResourceCollector();
@@ -153,6 +153,8 @@ print NumberSequence::generateUniqueIntegerId();
 
 ///////////////////////////////////////////////////////////////////////////
 
+// "18 backup ResourceCollector new interfaces"
+/*
 $milk = new FarmAnimalResource('молоко','л');
 $eggs = new FarmAnimalResource('яйцо','шт');
 $meat = new FarmAnimalResource('свинина','кг');
@@ -171,3 +173,77 @@ $resourceCollector
 $report = $resourceCollector->getResourceDataAsJsonArray();
 
 var_dump($report);
+*/
+
+// ("19 backup FarmAnimalTable and its interfaces first step")
+/*
+$farmAnimalTable = new FarmAnimalTable();
+
+$a = $farmAnimalTable->getAnimalDataAsArray();
+*/
+
+// (Object returns array by value)
+/*
+$chicken1 = new FarmAnimal(
+   1,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken2 = new FarmAnimal(
+   2,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$cow1 = new FarmAnimal(
+   3,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+$farmAnimalTable = new FarmAnimalTable();
+$farmAnimalTable->add($chicken1);
+$farmAnimalTable->add($chicken2);
+$farmAnimalTable->add($cow1);
+
+$a = $farmAnimalTable->getAnimalDataAsArray();
+
+print_r($a);
+
+$a[0] = 'xxx';
+print_r($farmAnimalTable->getAnimalDataAsArray());
+*/
+
+$chicken1 = new FarmAnimal(
+   1,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken2 = new FarmAnimal(
+   2,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$cow1 = new FarmAnimal(
+   3,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+$farmAnimalTable = new FarmAnimalTable();
+$farmAnimalTable->add($chicken1);
+$farmAnimalTable->add($chicken1);
+$farmAnimalTable->add($cow1);
+
+$a = $farmAnimalTable->getAnimalDataAsArray();
+
+print_r($a);
