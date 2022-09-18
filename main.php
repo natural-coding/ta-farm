@@ -16,6 +16,7 @@ require_once PATH_INTERFACES . 'GivingResourceInterface.php';
 require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
 require_once PATH_INTERFACES . 'AnimalDataStoreInterface.php';
 require_once PATH_INTERFACES . 'AnimalDataExportInterface.php';
+require_once PATH_INTERFACES . 'FarmGatherResourcesFromAnimalsInterface.php';
 
 require_once PATH_ABSTRACTS . 'FarmAnimalTableAbstract.php';
 require_once PATH_ABSTRACTS . 'ResourceCollectorAbstract.php';
@@ -287,6 +288,8 @@ $report = $resourceCollector->getResourceDataAsJsonArray();
 var_dump($report);
 */
 
+// ("23 backup Farm class works")
+/*
 $chicken1 = new FarmAnimal(
    1,
    'курица',
@@ -321,3 +324,65 @@ $resourceCollector = new ResourceCollector();
 
 $farm = new Farm($farmAnimalTable,$resourceCollector);
 $farm->add($chicken1);
+*/
+
+$chicken1 = new FarmAnimal(
+   1,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken2 = new FarmAnimal(
+   2,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken3 = new FarmAnimal(
+   10,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken4 = new FarmAnimal(
+   11,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+
+
+$cow1 = new FarmAnimal(
+   3,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+$cow2 = new FarmAnimal(
+   4,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+
+$farmAnimalTable = new FarmAnimalTable();
+$resourceCollector = new ResourceCollector();
+
+$farm = new Farm($farmAnimalTable,$resourceCollector);
+$farm->add($chicken1);
+$farm->add($chicken2);
+$farm->add($chicken3);
+$farm->add($chicken4);
+
+$farm->add($cow1);
+$farm->add($cow2);
+$farm->gatherResourcesFromAnimals();
+
+print_r($farm->getAnimalDataGroupedAsJsonArray());
+print_r($farm->getResourceDataAsJsonArray());

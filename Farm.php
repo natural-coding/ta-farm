@@ -3,7 +3,7 @@
 /**
  * It is the main class of an application
  */
- final class Farm implements AnimalDataStoreInterface, AnimalDataExportInterface, ResourceDataExportInterface
+ final class Farm implements AnimalDataStoreInterface, AnimalDataExportInterface, ResourceDataExportInterface, FarmGatherResourcesFromAnimalsInterface
 {
    private FarmAnimalTableAbstract $farmAnimalTable;
    private ResourceCollectorAbstract $resourceCollector;
@@ -37,6 +37,20 @@
    function getResourceDataAsJsonArray() : array
    {
       return $this->resourceCollector->getResourceDataAsJsonArray();
+   }
+
+   function gatherResourcesFromAnimals()
+   {
+      $animals = $this->farmAnimalTable->getAnimalDataAsArray();
+
+      foreach($animals as $farmAnimal)
+      {
+         $resource = new FarmAnimalResource();
+         $quantity = 0;
+
+         $farmAnimal->giveResourceToOwner($resource,$quantity);
+         $this->resourceCollector->add($resource,$quantity);
+      }
    }
 
 }
