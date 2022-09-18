@@ -1,6 +1,6 @@
 <?php
 
-class FarmAnimal extends FarmAnimalAbstract implements GivingResourceInterface
+class FarmAnimal extends FarmAnimalBase implements GivingResourceInterface
 {
    private RandomNumberGeneratorInterface $randomNumberGenerator;
    private FarmAnimalResourceInterface $farmAnimalResource;

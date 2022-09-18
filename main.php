@@ -2,11 +2,9 @@
 
 define('PATH_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define('PATH_INTERFACES', PATH_ROOT . 'interfaces' . DIRECTORY_SEPARATOR);
-define('PATH_ABSTRACTS', PATH_ROOT . 'abstracts' . DIRECTORY_SEPARATOR);
 
 require_once PATH_INTERFACES . 'FarmAnimalInterface.php';
 require_once PATH_INTERFACES . 'HasIntegerIdInterface.php';
-require_once PATH_ABSTRACTS . 'FarmAnimalAbstract.php';
 
 require_once PATH_INTERFACES . 'ResourceCollectorInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalResourceInterface.php';
@@ -17,6 +15,7 @@ require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
 
 require_once PATH_ROOT . 'ResourceCollector.php';
 require_once PATH_ROOT . 'FarmAnimalResource.php';
+require_once PATH_ROOT . 'FarmAnimalBase.php';
 require_once PATH_ROOT . 'FarmAnimal.php';
 require_once PATH_ROOT . 'RandomNumberGenerator.php';
 require_once PATH_ROOT . 'FarmAnimalInventory.php';
@@ -140,9 +139,11 @@ print NumberSequence::generateUniqueIntegerId();
 */
 
 // "14 Implement NumberSequence setFirstItem"
+/*
 NumberSequence::setFirstItem(100);
 
 print NumberSequence::generateUniqueIntegerId();
 print NumberSequence::generateUniqueIntegerId();
 print NumberSequence::generateUniqueIntegerId();
 print NumberSequence::generateUniqueIntegerId();
+*/

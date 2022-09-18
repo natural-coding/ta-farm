@@ -1,6 +1,6 @@
 <?php
 
-abstract class FarmAnimalAbstract implements FarmAnimalInterface, HasIntegerIdInterface
+abstract class FarmAnimalBase implements FarmAnimalInterface, HasIntegerIdInterface
 {
    protected string $species;
    protected int $id;
