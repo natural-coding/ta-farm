@@ -17,9 +17,52 @@ class FarmAnimalTable implements AnimalDataStoreInterface, AnimalDataExportInter
       return $this->farmAnimalsArray;
    }
 
+   /**
+    * Returns an array
+    * Example
+    */
+/*      return [
+         [
+            "species" => 'корова',
+            "animalCount" => 10
+         ],
+         [
+            "species" => 'курица',
+            "animalCount" => 20
+         ]
+      ];
+*/   
+
    function getAnimalDataGroupedAsJsonArray() : array
    {
-      return [];
+      $outArray = [];
+      /**
+       * key is a species name
+       * value is amount of animals
+       */
+      $statArray = [];
+
+      foreach($this->farmAnimalsArray as $farmAnimal)
+      {
+         $key = $farmAnimal->getSpecies();
+         if (array_key_exists($key, $statArray))
+            $statArray[$key]++;
+         else
+            $statArray[$key] = 1;
+      }
+
+      ksort($statArray);
+
+      foreach($statArray as $speciesName => $count)
+      {
+         $val = new stdClass();
+         $val->speciesName = $speciesName;
+         $val->animalCount = $count;
+
+         array_push($outArray,$val);
+      }
+
+      return $outArray;
    }
 
    /**
@@ -28,6 +71,8 @@ class FarmAnimalTable implements AnimalDataStoreInterface, AnimalDataExportInter
     */
    function checkIsIdUnique(int $p_Id)
    {
+      // Do not optimize too early!
+      // It is O(n^2) anyway! ;-)
       foreach($this->farmAnimalsArray as $farmAnimal)
          if ($farmAnimal->getId() === $p_Id)
             throw new Exception("Animal ID = $p_Id already exists");

@@ -241,9 +241,9 @@ $cow1 = new FarmAnimal(
 
 $farmAnimalTable = new FarmAnimalTable();
 $farmAnimalTable->add($chicken1);
-$farmAnimalTable->add($chicken1);
+$farmAnimalTable->add($chicken2);
 $farmAnimalTable->add($cow1);
 
-$a = $farmAnimalTable->getAnimalDataAsArray();
+$a = $farmAnimalTable->getAnimalDataGroupedAsJsonArray();
 
 print_r($a);
