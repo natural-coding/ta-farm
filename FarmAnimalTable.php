@@ -1,6 +1,6 @@
 <?php
 
-class FarmAnimalTable implements AnimalDataStoreInterface, AnimalDataExportInterface
+class FarmAnimalTable extends FarmAnimalTableAbstract
 {
    private $farmAnimalsArray = [];
 

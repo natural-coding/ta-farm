@@ -3,7 +3,7 @@
 /**
  * Collect all the resources it receives. Return totals.
  */
-class ResourceCollector implements ResourceDataStoreInterface, ResourceDataExportInterface
+class ResourceCollector extends ResourceCollectorAbstract
 {
    /**
     * It stores farm animals' resources

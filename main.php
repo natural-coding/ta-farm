@@ -2,6 +2,7 @@
 
 define('PATH_ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define('PATH_INTERFACES', PATH_ROOT . 'interfaces' . DIRECTORY_SEPARATOR);
+define('PATH_ABSTRACTS', PATH_ROOT . 'abstracts' . DIRECTORY_SEPARATOR);
 
 require_once PATH_INTERFACES . 'FarmAnimalInterface.php';
 require_once PATH_INTERFACES . 'HasIntegerIdInterface.php';
@@ -16,6 +17,9 @@ require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
 require_once PATH_INTERFACES . 'AnimalDataStoreInterface.php';
 require_once PATH_INTERFACES . 'AnimalDataExportInterface.php';
 
+require_once PATH_ABSTRACTS . 'FarmAnimalTableAbstract.php';
+require_once PATH_ABSTRACTS . 'ResourceCollectorAbstract.php';
+
 require_once PATH_ROOT . 'ResourceCollector.php';
 require_once PATH_ROOT . 'FarmAnimalResource.php';
 require_once PATH_ROOT . 'FarmAnimalBase.php';
@@ -23,6 +27,7 @@ require_once PATH_ROOT . 'FarmAnimal.php';
 require_once PATH_ROOT . 'RandomNumberGenerator.php';
 require_once PATH_ROOT . 'FarmAnimalTable.php';
 require_once PATH_ROOT . 'NumberSequence.php';
+require_once PATH_ROOT . 'Farm.php';
 
 /*$resourceCollector = new ResourceCollector();
 
@@ -260,6 +265,8 @@ $a = $farmAnimalTable->getAnimalDataGroupedAsJsonArray();
 print_r($a);
 */
 
+// ("22 Sort resources by name for report")
+/*
 $milk = new FarmAnimalResource('молоко','л');
 $eggs = new FarmAnimalResource('яйцо','шт');
 $meat = new FarmAnimalResource('свинина','кг');
@@ -278,3 +285,39 @@ $resourceCollector
 $report = $resourceCollector->getResourceDataAsJsonArray();
 
 var_dump($report);
+*/
+
+$chicken1 = new FarmAnimal(
+   1,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$chicken2 = new FarmAnimal(
+   2,
+   'курица',
+   new FarmAnimalResource('яйцо','шт'),
+   new RandomNumberGenerator(1,10)
+);
+
+$cow1 = new FarmAnimal(
+   3,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+$cow2 = new FarmAnimal(
+   4,
+   'корова',
+   new FarmAnimalResource('молоко','л'),
+   new RandomNumberGenerator(8,12)
+);
+
+
+$farmAnimalTable = new FarmAnimalTable();
+$resourceCollector = new ResourceCollector();
+
+$farm = new Farm($farmAnimalTable,$resourceCollector);
+$farm->add($chicken1);
