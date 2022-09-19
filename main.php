@@ -10,7 +10,6 @@ require_once PATH_INTERFACES . 'HasIntegerIdInterface.php';
 require_once PATH_INTERFACES . 'ResourceDataStoreInterface.php';
 require_once PATH_INTERFACES . 'ResourceDataExportInterface.php';
 require_once PATH_INTERFACES . 'FarmAnimalResourceInterface.php';
-require_once PATH_INTERFACES . 'FarmAnimalInventoryInterface.php';
 require_once PATH_INTERFACES . 'RandomNumberGeneratorInterface.php';
 require_once PATH_INTERFACES . 'GivingResourceInterface.php';
 require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
