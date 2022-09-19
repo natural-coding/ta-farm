@@ -28,7 +28,7 @@ $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->g
 print $farmAnimalTableReport . PHP_EOL;
 
 
-natcod\farm\helpers\log('Собираем продукцию животноводста в течение недели');
+natcod\farm\helpers\log('Собираем продукцию животноводства в течение недели');
 // Gather resources from animals
 for ($day = 0; $day < 7; $day++)
 {
