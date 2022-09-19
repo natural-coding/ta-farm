@@ -162,6 +162,8 @@ $gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($far
 print $gatheredResourcesReport . PHP_EOL;
 */
 
+// ("36 greeting and goodbye messages")
+/*
 $farm = new Farm(
       new FarmAnimalTable(),
       new ResourceCollector()
@@ -199,6 +201,52 @@ print $farmAnimalTableReport . PHP_EOL;
 natcod\farm\helpers\log('Ещё одну неделю собираем продукцию');
 // Gather resources from animals
 for ($day = 0; $day < 1; $day++)
+{
+   $farm->gatherResourcesFromAnimalsDaily();
+}
+
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
+
+print $gatheredResourcesReport;
+
+natcod\farm\helpers\printGoodByeMessage();
+*/
+
+$farm = new Farm(
+      new FarmAnimalTable(),
+      new ResourceCollector()
+   );
+
+natcod\farm\helpers\printGreetingMessage();
+natcod\farm\helpers\log('Добавляем животных на ферму');
+natcod\farm\helpers\AddAnimalsToFarmEn($farm);
+
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . PHP_EOL;
+
+
+natcod\farm\helpers\log('Собираем продукцию животноводста в течение недели');
+// Gather resources from animals
+for ($day = 0; $day < 7; $day++)
+{
+   $farm->gatherResourcesFromAnimalsDaily();
+}
+
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
+
+print $gatheredResourcesReport . PHP_EOL;
+
+natcod\farm\helpers\log('Добавляем ещё животных');
+natcod\farm\helpers\AddExtraAnimalsToFarmEn($farm);
+
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm-> getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . PHP_EOL;
+
+natcod\farm\helpers\log('Ещё одну неделю собираем продукцию');
+// Gather resources from animals
+for ($day = 0; $day < 7; $day++)
 {
    $farm->gatherResourcesFromAnimalsDaily();
 }
