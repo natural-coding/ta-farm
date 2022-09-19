@@ -67,23 +67,11 @@ $farm = new Farm(
       new ResourceCollector()
    );
 
-natcod\farm\helpers\AddAnimalsToFarm($farm);
+natcod\farm\helpers\AddAnimalsToFarmEn($farm);
 
 // [!] [DEBUG]
-print_r($farm->getAnimalDataGroupedAsJsonArray());
+//print_r($farm->getAnimalDataGroupedAsJsonArray());
 
 $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
 
-print $farmAnimalTableReport . "\n";
-
-for ($day = 0; $day < 1; $day++)
-{
-   $farm->gatherResourcesFromAnimalsDaily();
-}
-
-// [!] [DEBUG]
-print_r($farm->getResourceDataAsJsonArray());
-
-$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
-
-print $gatheredResourcesReport . "\n";
+print $farmAnimalTableReport . PHP_EOL;
