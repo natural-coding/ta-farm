@@ -3,7 +3,7 @@
 /**
  * It is the main class of an application
  */
- final class Farm implements AnimalDataStoreInterface, AnimalDataExportInterface, ResourceDataExportInterface, FarmGatherResourcesFromAnimalsInterface
+ class Farm extends FarmAbstract
 {
    private FarmAnimalTableAbstract $farmAnimalTable;
    private ResourceCollectorAbstract $resourceCollector;
