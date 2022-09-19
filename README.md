@@ -1,6 +1,10 @@
 ## ta-farm
 
-A test assignment completed 99% as it has a well defined architecture. :-) The source code follows the SOLID principles (but not PSR recommendations). 
+A test assignment is ready. sprintf() and str_pad() functions do not work with Unicode (foreign characters) properly. It was tested on
+ Windows 7 64-bit, PHP 7.4.26 VS15 x64 Thread Safe.
+
+So I did use English for reports (but not for greetings! :-))
+
 
 ### Requirements
 - PHP 7.4+ (type hints in class declaration)
@@ -10,99 +14,94 @@ A test assignment completed 99% as it has a well defined architecture. :-) The s
 #### Source code
 
 ```php
-$chicken1 = new FarmAnimal(
-   1,
-   'курица',
-   new FarmAnimalResource('яйцо','шт'),
-   new RandomNumberGenerator(1,10)
-);
+$farm = new Farm(
+      new FarmAnimalTable(),
+      new ResourceCollector()
+   );
 
-$chicken2 = new FarmAnimal(
-   2,
-   'курица',
-   new FarmAnimalResource('яйцо','шт'),
-   new RandomNumberGenerator(1,10)
-);
+natcod\farm\helpers\printGreetingMessage();
+natcod\farm\helpers\log('Добавляем животных на ферму');
+natcod\farm\helpers\AddAnimalsToFarmEn($farm);
 
-$chicken3 = new FarmAnimal(
-   10,
-   'курица',
-   new FarmAnimalResource('яйцо','шт'),
-   new RandomNumberGenerator(1,10)
-);
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
 
-$chicken4 = new FarmAnimal(
-   11,
-   'курица',
-   new FarmAnimalResource('яйцо','шт'),
-   new RandomNumberGenerator(1,10)
-);
-
-$cow1 = new FarmAnimal(
-   3,
-   'корова',
-   new FarmAnimalResource('молоко','л'),
-   new RandomNumberGenerator(8,12)
-);
-
-$cow2 = new FarmAnimal(
-   4,
-   'корова',
-   new FarmAnimalResource('молоко','л'),
-   new RandomNumberGenerator(8,12)
-);
+print $farmAnimalTableReport . PHP_EOL;
 
 
-$farmAnimalTable = new FarmAnimalTable();
-$resourceCollector = new ResourceCollector();
+natcod\farm\helpers\log('Собираем продукцию животноводста в течение недели');
+// Gather resources from animals
+for ($day = 0; $day < 7; $day++)
+{
+   $farm->gatherResourcesFromAnimalsDaily();
+}
 
-$farm = new Farm($farmAnimalTable,$resourceCollector);
-$farm->addAnimal($chicken1);
-$farm->addAnimal($chicken2);
-$farm->addAnimal($chicken3);
-$farm->addAnimal($chicken4);
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
 
-$farm->addAnimal($cow1);
-$farm->addAnimal($cow2);
-$farm->gatherResourcesFromAnimals();
+print $gatheredResourcesReport . PHP_EOL;
 
-print_r($farm->getAnimalDataGroupedAsJsonArray());
-print_r($farm->getResourceDataAsJsonArray());
+natcod\farm\helpers\log('Добавляем ещё животных');
+natcod\farm\helpers\AddExtraAnimalsToFarmEn($farm);
 
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm-> getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . PHP_EOL;
+
+natcod\farm\helpers\log('Ещё одну неделю собираем продукцию');
+// Gather resources from animals
+for ($day = 0; $day < 7; $day++)
+{
+   $farm->gatherResourcesFromAnimalsDaily();
+}
+
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
+
+print $gatheredResourcesReport;
+
+natcod\farm\helpers\printGoodByeMessage();
 ```
 #### Output
 ```text
 >php src/main.php
-Array
-(
-    [0] => stdClass Object
-        (
-            [speciesName] => корова
-            [animalCount] => 2
-        )
 
-    [1] => stdClass Object
-        (
-            [speciesName] => курица
-            [animalCount] => 4
-        )
+===> Добро пожаловать!
 
-)
-Array
-(
-    [0] => stdClass Object
-        (
-            [resourceName] => молоко
-            [units] => л
-            [quantity] => 20
-        )
+===> Добавляем животных на ферму...
+             >>> [Animals] <<<
+-------------------------------------------
+|Title               |Amount              |
+-------------------------------------------
+|chicken             |                  20|
+|cow                 |                  10|
+-------------------------------------------
 
-    [1] => stdClass Object
-        (
-            [resourceName] => яйцо
-            [units] => шт
-            [quantity] => 15
-        )
+===> Собираем продукцию животноводста в течение недели...
+               >>> [Resources] <<<
+-------------------------------------------------
+|Title               |Units     |Amount         |
+-------------------------------------------------
+|egg                 |item      |            142|
+|milk                |L         |           1404|
+-------------------------------------------------
 
-)
+===> Добавляем ещё животных...
+             >>> [Animals] <<<
+-------------------------------------------
+|Title               |Amount              |
+-------------------------------------------
+|chicken             |                  25|
+|cow                 |                  11|
+-------------------------------------------
+
+===> Ещё одну неделю собираем продукцию...
+               >>> [Resources] <<<
+-------------------------------------------------
+|Title               |Units     |Amount         |
+-------------------------------------------------
+|egg                 |item      |            305|
+|milk                |L         |           2948|
+-------------------------------------------------
+
+===> Хорошего Вам дня!..
 ```
+
+Enjoy!
