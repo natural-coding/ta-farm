@@ -1,7 +1,7 @@
 ## ta-farm
 
 A test assignment is ready. sprintf() and str_pad() functions do not work with Unicode (foreign characters) properly. It was tested on
- Windows 7 64-bit, PHP 7.4.28 VS15 x64 Non Thread Safe.
+ Windows 7 64-bit, PHP 7.4.26 VS15 x64 Non Thread Safe.
 
 So I did use English for reports (but not for greetings! :-))
 
