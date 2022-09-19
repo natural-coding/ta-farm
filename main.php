@@ -33,6 +33,8 @@ require_once PATH_ROOT . 'Farm.php';
 require_once PATH_ROOT . 'main_helpers.php';
 require_once PATH_ROOT . 'reports.php';
 
+// ("27 reports and new main workflow stub")
+/*
 $farm = new Farm(
       new FarmAnimalTable(),
       new ResourceCollector()
@@ -48,14 +50,39 @@ $gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($far
 
 print $gatheredResourcesReport . "\n";
 
-/**
- * Place extra animals into farm
- */
+// Place extra animals into farm
 natcod\farm\helpers\AddExtraAnimalsToFarm($farm);
 
 $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm-> getAnimalDataGroupedAsJsonArray());
 
 print $farmAnimalTableReport . "\n";
+
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
+
+print $gatheredResourcesReport . "\n";
+*/
+
+$farm = new Farm(
+      new FarmAnimalTable(),
+      new ResourceCollector()
+   );
+
+natcod\farm\helpers\AddAnimalsToFarm($farm);
+
+// [!] [DEBUG]
+print_r($farm->getAnimalDataGroupedAsJsonArray());
+
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . "\n";
+
+for ($day = 0; $day < 7; $day++)
+{
+   $farm->gatherResourcesFromAnimals();
+}
+
+// [!] [DEBUG]
+print_r($farm->getResourceDataAsJsonArray());
 
 $gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
 
