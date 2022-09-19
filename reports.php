@@ -25,7 +25,30 @@ function BuildFarmAnimalTableReport(array $p_animalDataGroupedJsonArray) : strin
 
 function BuildGatheredResourcesReport(array $p_resourceDataJsonArray) : string
 {
-   return 'Hello! It\'s BuildGatheredResourcesReport()';
+   $REPORT_WIDTH = 44;
+
+   $outStr = GetReportTitle('Resources',$REPORT_WIDTH) . PHP_EOL
+      . GetHorizontalLine($REPORT_WIDTH) . PHP_EOL;
+
+   $headers = ['Title', 'Units', 'Amount'];
+
+   $outStr .= sprintf('|%-20s|%-10s|%-10s|', $headers[0], $headers[1], $headers[2]) . PHP_EOL
+      . GetHorizontalLine($REPORT_WIDTH) . PHP_EOL;
+   
+   foreach($p_resourceDataJsonArray as $rec)
+   {
+      $outStr .= sprintf(
+         '|%-20s|%-10s|%10s|',
+         $rec->resourceName,
+         $rec->units,
+         $rec->quantity
+      ) . PHP_EOL;
+   }
+
+   $outStr .= GetHorizontalLine($REPORT_WIDTH) . PHP_EOL;
+
+   return $outStr;
+
 }
 
 function GetReportTitle(string $p_title, int $p_reportWithInAsciiChars = 0) : string

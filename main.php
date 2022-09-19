@@ -93,6 +93,8 @@ $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->g
 print $farmAnimalTableReport . PHP_EOL;
 */
 
+// ("32 extra animals report works")
+/*
 $farm = new Farm(
       new FarmAnimalTable(),
       new ResourceCollector()
@@ -112,3 +114,37 @@ natcod\farm\helpers\AddExtraAnimalsToFarmEn($farm);
 $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm-> getAnimalDataGroupedAsJsonArray());
 
 print $farmAnimalTableReport . "\n";
+*/
+
+$farm = new Farm(
+      new FarmAnimalTable(),
+      new ResourceCollector()
+   );
+
+natcod\farm\helpers\AddAnimalsToFarmEn($farm);
+
+// Gather resources from animals
+for ($day = 0; $day < 1; $day++)
+{
+   $farm->gatherResourcesFromAnimalsDaily();
+}
+
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
+
+print $gatheredResourcesReport . PHP_EOL;
+
+////////////////////////////////
+// Place extra animals into farm
+////////////////////////////////
+natcod\farm\helpers\AddExtraAnimalsToFarmEn($farm);
+
+// Gather resources from animals
+for ($day = 0; $day < 1; $day++)
+{
+   $farm->gatherResourcesFromAnimalsDaily();
+}
+
+$gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($farm->getResourceDataAsJsonArray());
+
+print $gatheredResourcesReport . PHP_EOL;
+
