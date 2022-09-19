@@ -1,16 +1,13 @@
 <?php
 namespace natcod\farm\helpers;
 
-function AddAnimalsToFarm(\FarmAbstract $p_farm)
+function AddAnimalsToFarm(\FarmAbstract $p_farm, int $p_chickenCount = 20, int $p_cowCount = 10)
 {
-   define('CHICKEN_COUNT',1);
-   define('COW_COUNT',1);
-
    $chickenSpeciesName = 'курица';
    $chickenResourceEgg = new \FarmAnimalResource('яйцо','шт');
    $chickenResourceRandGen = new \RandomNumberGenerator(0,2);
 
-   for($i = 0; $i < CHICKEN_COUNT; $i++)
+   for($i = 0; $i < $p_chickenCount; $i++)
       $p_farm->addAnimal(
          new \FarmAnimal(
             \NumberSequence::generateUniqueIntegerId(),
@@ -25,7 +22,7 @@ function AddAnimalsToFarm(\FarmAbstract $p_farm)
    $cowResourceRandGen = new \RandomNumberGenerator(8,12);
    $cowDailyMultiplicator = 2;
 
-   for($i = 0; $i < COW_COUNT; $i++)
+   for($i = 0; $i < $p_cowCount; $i++)
       $p_farm->addAnimal(
          new \FarmAnimal(
             \NumberSequence::generateUniqueIntegerId(),
@@ -73,10 +70,29 @@ function AddAnimalsToFarmEn(\FarmAbstract $p_farm, int $p_chickenCount = 20, int
 }
 
 
-function AddExtraAnimalsToFarmEn(\FarmAbstract $p_farm)
+function AddExtraAnimalsToFarmEn(\FarmAbstract $p_farm, int $p_chickenCount = 5, int $p_cowCount = 1 )
 {
-   $chickenCount = 1;
-   $cowCount = 1;
+   AddAnimalsToFarmEn($p_farm,$p_chickenCount,$p_cowCount);
+}
 
-   AddAnimalsToFarmEn($p_farm,$chickenCount,$cowCount);
+function log(string $p_message, bool $p_useDots = true)
+{
+   $ellipsis = ($p_useDots ? '...' : '');
+
+   print "===> $p_message{$ellipsis}" . PHP_EOL;
+}
+
+function printGreetingMessage()
+{
+   print PHP_EOL;
+   $fUseDots = false;   
+   log('Добро пожаловать!', $fUseDots);
+   print PHP_EOL;
+}
+
+function printGoodByeMessage()
+{
+   print PHP_EOL;
+   $fUseDots = false;
+   print log('Хорошего Вам дня!..', $fUseDots);
 }
