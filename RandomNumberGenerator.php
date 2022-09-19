@@ -7,12 +7,8 @@ class RandomNumberGenerator implements RandomNumberGeneratorInterface
 
    public function __construct(int $p_min, int $p_max)
    {
-      if ($p_min > $p_max)
-      {
-         $temp = $p_max;
-         $p_max = $p_min;
-         $p_min = $p_max;
-      }
+      $p_min = \min($p_min,$p_max);
+      $p_max = \max($p_min,$p_max);
 
       $this->setMinMax($p_min, $p_max);
    }
