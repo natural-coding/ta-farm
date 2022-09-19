@@ -16,7 +16,7 @@ require_once PATH_INTERFACES . 'GivingResourceInterface.php';
 require_once PATH_INTERFACES . 'IntegerIdGeneratorInterface.php';
 require_once PATH_INTERFACES . 'AnimalDataStoreInterface.php';
 require_once PATH_INTERFACES . 'AnimalDataExportInterface.php';
-require_once PATH_INTERFACES . 'FarmGatherResourcesFromAnimalsInterface.php';
+require_once PATH_INTERFACES . 'FarmGatherResourcesFromAnimalsDailyInterface.php';
 
 require_once PATH_ABSTRACTS . 'FarmAnimalTableAbstract.php';
 require_once PATH_ABSTRACTS . 'ResourceCollectorAbstract.php';
@@ -76,9 +76,9 @@ $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->g
 
 print $farmAnimalTableReport . "\n";
 
-for ($day = 0; $day < 7; $day++)
+for ($day = 0; $day < 1; $day++)
 {
-   $farm->gatherResourcesFromAnimals();
+   $farm->gatherResourcesFromAnimalsDaily();
 }
 
 // [!] [DEBUG]

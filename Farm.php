@@ -39,7 +39,7 @@
       return $this->resourceCollector->getResourceDataAsJsonArray();
    }
 
-   function gatherResourcesFromAnimals()
+   function gatherResourcesFromAnimalsDaily()
    {
       $animals = $this->farmAnimalTable->getAnimalDataAsArray();
 

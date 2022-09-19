@@ -3,7 +3,7 @@ namespace natcod\farm\helpers;
 
 function AddAnimalsToFarm(\FarmAbstract $p_farm)
 {
-   define('CHICKEN_COUNT',2);
+   define('CHICKEN_COUNT',1);
    define('COW_COUNT',1);
 
    $chickenSpeciesName = 'курица';
@@ -23,6 +23,7 @@ function AddAnimalsToFarm(\FarmAbstract $p_farm)
    $cowSpeciesName = 'корова';
    $cowResourceMilk = new \FarmAnimalResource('молоко','л');
    $cowResourceRandGen = new \RandomNumberGenerator(8,12);
+   $cowDailyMultiplicator = 2;
 
    for($i = 0; $i < COW_COUNT; $i++)
       $p_farm->addAnimal(
@@ -30,7 +31,8 @@ function AddAnimalsToFarm(\FarmAbstract $p_farm)
             \NumberSequence::generateUniqueIntegerId(),
             $cowSpeciesName,
             $cowResourceMilk,
-            $cowResourceRandGen
+            $cowResourceRandGen,
+            $cowDailyMultiplicator
          )         
       );
 
