@@ -62,6 +62,8 @@ $gatheredResourcesReport = natcod\farm\reports\BuildGatheredResourcesReport($far
 print $gatheredResourcesReport . "\n";
 */
 
+// ("30 Using English alphabet due to problems with printf")
+/*
 $farm = new Farm(
       new FarmAnimalTable(),
       new ResourceCollector()
@@ -75,3 +77,38 @@ natcod\farm\helpers\AddAnimalsToFarmEn($farm);
 $farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
 
 print $farmAnimalTableReport . PHP_EOL;
+*/
+
+// ("31 print AnimalReport 1")
+/*
+$farm = new Farm(
+      new FarmAnimalTable(),
+      new ResourceCollector()
+   );
+
+natcod\farm\helpers\AddAnimalsToFarmEn($farm);
+
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . PHP_EOL;
+*/
+
+$farm = new Farm(
+      new FarmAnimalTable(),
+      new ResourceCollector()
+   );
+
+natcod\farm\helpers\AddAnimalsToFarmEn($farm,1,1);
+
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm->getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . PHP_EOL;
+
+////////////////////////////////
+// Place extra animals into farm
+////////////////////////////////
+natcod\farm\helpers\AddExtraAnimalsToFarmEn($farm);
+
+$farmAnimalTableReport = natcod\farm\reports\BuildFarmAnimalTableReport($farm-> getAnimalDataGroupedAsJsonArray());
+
+print $farmAnimalTableReport . "\n";
