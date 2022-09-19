@@ -1,5 +1,5 @@
 <?php
 interface AnimalDataStoreInterface
 {
-   function add(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface;
+   function addAnimal(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface;
 }

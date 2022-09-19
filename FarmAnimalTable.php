@@ -4,7 +4,7 @@ class FarmAnimalTable extends FarmAnimalTableAbstract
 {
    private $farmAnimalsArray = [];
 
-   function add(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface
+   function addAnimal(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface
    {
       $this->checkIsIdUnique($p_farmAnimal->getId());
       array_push($this->farmAnimalsArray, $p_farmAnimal);

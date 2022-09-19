@@ -6,7 +6,7 @@
  */
 abstract class FarmAnimalTableAbstract implements AnimalDataStoreInterface, AnimalDataExportInterface
 {
-   abstract function add(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface;   
+   abstract function addAnimal(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface;   
    /**
     * It returns an indexed array of FarmAnimalBase instances
     */

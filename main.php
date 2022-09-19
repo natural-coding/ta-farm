@@ -212,9 +212,9 @@ $cow1 = new FarmAnimal(
 );
 
 $farmAnimalTable = new FarmAnimalTable();
-$farmAnimalTable->add($chicken1);
-$farmAnimalTable->add($chicken2);
-$farmAnimalTable->add($cow1);
+$farmAnimalTable->addAnimal($chicken1);
+$farmAnimalTable->addAnimal($chicken2);
+$farmAnimalTable->addAnimal($cow1);
 
 $a = $farmAnimalTable->getAnimalDataAsArray();
 
@@ -256,10 +256,10 @@ $cow2 = new FarmAnimal(
 
 
 $farmAnimalTable = new FarmAnimalTable();
-$farmAnimalTable->add($chicken1);
-//$farmAnimalTable->add($chicken2);
-$farmAnimalTable->add($cow1);
-$farmAnimalTable->add($cow2);
+$farmAnimalTable->addAnimal($chicken1);
+//$farmAnimalTable->addAnimal($chicken2);
+$farmAnimalTable->addAnimal($cow1);
+$farmAnimalTable->addAnimal($cow2);
 
 $a = $farmAnimalTable->getAnimalDataGroupedAsJsonArray();
 
@@ -323,7 +323,7 @@ $farmAnimalTable = new FarmAnimalTable();
 $resourceCollector = new ResourceCollector();
 
 $farm = new Farm($farmAnimalTable,$resourceCollector);
-$farm->add($chicken1);
+$farm->addAnimal($chicken1);
 */
 
 $chicken1 = new FarmAnimal(
@@ -375,13 +375,13 @@ $farmAnimalTable = new FarmAnimalTable();
 $resourceCollector = new ResourceCollector();
 
 $farm = new Farm($farmAnimalTable,$resourceCollector);
-$farm->add($chicken1);
-$farm->add($chicken2);
-$farm->add($chicken3);
-$farm->add($chicken4);
+$farm->addAnimal($chicken1);
+$farm->addAnimal($chicken2);
+$farm->addAnimal($chicken3);
+$farm->addAnimal($chicken4);
 
-$farm->add($cow1);
-$farm->add($cow2);
+$farm->addAnimal($cow1);
+$farm->addAnimal($cow2);
 $farm->gatherResourcesFromAnimals();
 
 print_r($farm->getAnimalDataGroupedAsJsonArray());

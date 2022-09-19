@@ -17,9 +17,9 @@
       $this->resourceCollector = $p_ResourceCollector;
    }
 
-   function add(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface
+   function addAnimal(FarmAnimalBase $p_farmAnimal) : AnimalDataStoreInterface
    {
-      $this->farmAnimalTable->add($p_farmAnimal);
+      $this->farmAnimalTable->addAnimal($p_farmAnimal);
 
       return $this;
    }
