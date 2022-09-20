@@ -5,7 +5,7 @@ function AddAnimalsToFarm(\FarmAbstract $p_farm, int $p_chickenCount = 20, int $
 {
    $chickenSpeciesName = 'курица';
    $chickenResourceEgg = new \FarmAnimalResource('яйцо','шт');
-   $chickenResourceRandGen = new \RandomNumberGenerator(0,2);
+   $chickenResourceRandGen = new \RandomNumberGenerator(0,1);
 
    for($i = 0; $i < $p_chickenCount; $i++)
       $p_farm->addAnimal(
@@ -39,7 +39,7 @@ function AddAnimalsToFarmEn(\FarmAbstract $p_farm, int $p_chickenCount = 20, int
 {
    $chickenSpeciesName = 'chicken';
    $chickenResourceEgg = new \FarmAnimalResource('egg','item');
-   $chickenResourceRandGen = new \RandomNumberGenerator(0,2);
+   $chickenResourceRandGen = new \RandomNumberGenerator(0,1);
 
 
    for($i = 0; $i < $p_chickenCount; $i++)
