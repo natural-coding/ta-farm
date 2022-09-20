@@ -167,7 +167,7 @@ FarmAnimal class implicitly depends on it, as the first one needs an identificat
 ### Documentation
 
 Pictures like this should be here. They should describe the Farm class. But no such luck! :-)
-![](01-UML-sequence-diagram.png)
-![](02-interfaces.png)
+![01-UML-sequence-diagram.png](https://github.com/natural-coding/ta-farm/blob/05_crossing_finish_line_branch/_dev_doc/pic/01-UML-sequence-diagram.png)
+![02-interfaces.png](https://github.com/natural-coding/ta-farm/blob/05_crossing_finish_line_branch/_dev_doc/pic/02-interfaces.png)
 
 Thanks for reading!
