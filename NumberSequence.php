@@ -5,6 +5,13 @@ final class NumberSequence implements IntegerIdGeneratorInterface
    private static int $lastItem = 1;
    private static bool $sequenceItemAlreadyGeneratedFlag = false;
 
+   private function __construct() {}
+   
+   private function __clone() {}
+   
+   private function __wakeup() {}
+
+
 
    static function generateUniqueIntegerId() : int
    {
